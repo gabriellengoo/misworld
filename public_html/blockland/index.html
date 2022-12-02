@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>misery world</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="misery world author:Gabrielle ©2022 category:application-javascript" />
+		<meta property="og:url" content="http://niksgames.com/blockland" />
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="misery world" />
+		<meta property="og:description" content="misery world author:Gabrielle ©2022 category:application-javascript" />
+		<meta property="og:image" content="http://niksgames.com/blockland/assets/blockland-og.jpg" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1265" />
+		<meta property="og:image:height" content="817" />
+		<meta property="og:image:alt" content="misery world" />
+		<meta property='og:video' content='https://www.youtube.com/v/1r9V_JEEMlA' />
+		<!-- <link rel="icon" href="./assets/images/ert.ico" /> -->
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Kavivanar" rel="stylesheet">
+		<style>
+			@font-face {
+  font-family: "cross2";
+  src: url("https://cdn.glitch.global/b931fc39-bf9e-4b91-b112-6c53cf1316e1/CrossChancery-RegularSpike.ttf?v=1643720749920")
+    format("opentype");
+}
+
+
+			/* canvas{ 
+				background-color: rgb(255, 255, 255);
+			} */
+			body {
+				font-family: Monospace;
+				background-color: rgb(255, 255, 255);
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+				cursor: crosshair;
+				cursor:url(https://babesonwaves.club/wp-content/uploads/2021/07/bow-cursor-20px.png) -10 -10, auto!important;
+
+			}
+
+			.earth{
+				cursor:url(./assets/images/fairy.cur) -10 -10, auto!important;
+			}
+
+			.fire{
+				cursor:url(./assets/images/fire.cur) -10 -10, auto!important;	
+			}
+
+			.water{
+				cursor:url(./assets/images/air.cur) -10 -10, auto!important;	
+			}
+
+			.air{
+				cursor:url(./assets/images/water.cur) -10 -10, auto!important;	
+			}
+
+			.scanselect{
+				font-size: 4vw;
+				padding-top: 0px;
+				position:absolute;
+			text-align:center;
+			top: 90%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-family: "cross2";
+			}
+
+
+			.scan{ position:absolute;
+			text-align:center;
+			top: 50%;
+
+left: 50%;
+
+transform: translate(-50%, -50%);
+
+margin: 0;
+		z-index: 1000;
+		font-family: "cross2";
+		font-size: 5vw;
+		    color: black;
+			text-align: center;
+   padding-top: 10px;
+ /* font-size: 36px; */
+  /* font-family: "agrandir"; */
+  font-weight: "Tight";
+  word-spacing: 30px;
+  /* -webkit-text-stroke: 0.8px #ffff00; */
+  -webkit-text-fill-color: #99a8c6;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 10s;
+	transition-duration: 5s;
+}
+
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+		-webkit-filter: blur(0);
+	}
+	/* 25%{
+		opacity: .2;
+		-webkit-filter: blur(.2px);
+	}
+	50%{
+		opacity: .5;
+		-webkit-filter: blur(.5px);
+	}
+	75%{
+		opacity: .7;
+		-webkit-filter: blur(.7px);
+	} */
+	100% {
+		opacity: 1;
+		-webkit-filter: blur(1px);
+	}
+}
+			#message{
+				position:absolute;
+				left: 50%;
+				top: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				font-family: 'Kavivanar', san-serif;
+				font-size: 40px;
+				width:80%;
+				max-width:280px;
+				padding: 15px 15px 50px 15px;
+				text-align: center;
+				display:none;
+				align-content: center;
+				justify-content: center;
+				background-color: aliceblue;
+				border: medium solid #3D455C;
+				border-radius: 20px;
+				color: #3D455C;
+				z-index: 99;
+			}
+			#message_ok{
+				position: absolute;
+				bottom: 10px;
+				padding: 10px 20px 10px 20px;
+				font-family: sans-serif;
+				font-size: 20px;
+				background-color: #3D455C;
+				color: #fff;
+				border-radius: 8px;
+				border: medium solid #696882;
+			}
+			#chat{
+				position: absolute;
+				width: 100%;
+				height: 70px;
+				/* bottom: -40px; */
+				transition: all 0.5s;
+			}
+			form { background: rgba(255, 255, 255, 0); padding: 10px; width: 100%; }
+			form input { border-radius: 50px; height: 30px;  border: 1px; border-style: solid; color: rgb(101, 101, 101); background: rgba(130, 224, 255, 0); width: 88%; margin-right: .5%; }
+			form button {  border-radius: 50px; height: 40px;  border: 1px; border-style: solid; color: rgb(101, 101, 101); width: 8%; background: rgba(130, 224, 255, 0); font-family: Arial, Helvetica, sans-serif; font-size:large; }
+			form button:hover { background: rgba(101, 101, 101); }
+
+			
+			.cloud1 {
+    position: absolute;
+    width: 65vw;
+    left: -20vw;
+    bottom: -10vh;
+    opacity: 0.8;
+    z-index: 3;
+    pointer-events: none;
+    animation: cloud 5s infinite;
+	/* mix-blend-mode: multiply; */
+}
+
+.cloud2 {
+    position: absolute;
+    width: 55vw;
+    right: -14vw;
+    bottom: 0vh;
+    z-index: 3;
+    opacity: 0.7;
+    pointer-events: none;
+    animation: cloud 5s infinite;
+	/* mix-blend-mode: multiply; */
+}
+
+.cloud3 {
+    position: absolute;
+	width: 51vw;
+    left: 29vw;
+    bottom: -5vh;
+    opacity: 0.7;
+    z-index: 3;
+    pointer-events: none;
+    animation: cloud 5s infinite;
+	mix-blend-mode: multiply;
+}
+
+
+
+.canvas{
+	top: 0vh;
+    position: absolute;
+	display:none;
+	z-index: 0;
+}
+
+
+
+			@keyframes cloud {
+				0% {
+    transform: translate(0, 2%);
+}
+
+50% {
+    transform: translate(0, -8%);
+}
+100% {
+    transform: translate(0, 2%);
+}
+			}
+
+
+		/* .scan{ position: absolute; 
+		font-size: 12rem;
+		top: 25vw;
+    left: 25vw;} */
+	#container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  /* background: green; */
+}
+#container div {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  z-index: 1000;
+		    color: black;
+			text-align: center;
+   /* padding-top: 50px; */
+ font-size: 36px;
+  font-family: "agrandir";
+  font-weight: "Tight";
+  word-spacing: 30px;
+  -webkit-text-stroke: 0.8px #ffff00;
+  -webkit-text-fill-color: #99a8c6;
+  /* background: red; */
+}
+.top {
+  top: 0;
+  padding-top: 50px
+}
+.right {
+  right: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+
+
+
+a{
+	text-decoration: none;
+}
+
+
+a:visited{
+    color: rgba(173, 173, 173, 0.424);
+    -webkit-text-stroke: 0.8px #ffff0000;
+    -webkit-text-fill-color: #99a8c600;
+	text-decoration: none;
+}
+		</style>
+	</head>
+
+	<body>
+
+		
+		<!-- <div id="message">
+			<p id="message_text"></p>
+			<button id="message_ok">OK</button>
+		</div>
+		<div id="chat">
+			<form id="msg-form" action="">
+      			<input id="m" autocomplete="off" /><button>Send</button>
+    		</form>
+		</div> -->
+<canvas class="canvas"></canvas>
+
+		<div class="scan">
+			<!-- <p class="scanselect" > (select one)</p> -->
+		<p > WELCOME TO MISERY WORLD</p>
+		<p > SELECT HOW YOU ARE FEELING?</p>
+		<!-- <img class="cloud4" src="../assets/images/link.png"> -->
+	</div>
+
+
+
+	<div id="container">
+		<div class="top left"><div><a class="earth" href="./earth.html">EARTH</a></div></div>
+		<div class="top right"><div><a class="fire" href="./fire.html">FIRE</a></div></div>
+		<div class="bottom left"><div><a class="water" href="./earth.html">AIR</a></div></div>
+		<div class="bottom right"><div><a class="air" href="./earth.html">WATER</a></div></div>
+	  </div>
+
+		<img class="cloud1" src="https://groovewithme.xyz/html/cloud.png">
+		<img class="cloud2" src="https://groovewithme.xyz/html/cloud.png">
+		<img class="cloud3" src="https://groovewithme.xyz/html/cloud.png">
+
+		<img class="cloud1" src="https://groovewithme.xyz/html/cloud.png">
+		<img class="cloud2" src="https://groovewithme.xyz/html/cloud.png">
+		<img class="cloud3" src="https://groovewithme.xyz/html/cloud.png">
+
+
+
+
+
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/92/three.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		
+		<script src= "libs/inflate.min.js"></script>
+		<script src="libs/FBXLoader.js"></script>
+		<script src="libs/Detector.js"></script>
+		<script src="libs/toon3d.js"></script>
+		<!-- <script src="game.js"></script> -->
+		<script>
+			var game;
+			document.addEventListener("DOMContentLoaded", function(){ game = new Game(); });
+		</script>
+	</body>
+</html>
+
+

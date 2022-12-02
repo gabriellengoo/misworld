@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>fire</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="misery world author:Gabrielle ©2022 category:application-javascript" />
+		<!-- <meta property="og:url" content="http://niksgames.com/blockland" /> -->
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="misery world" />
+		<meta property="og:description" content="misery world author:Gabrielle ©2022 category:application-javascript" />
+		<meta property="og:image" content="./assets/images/ert.ico" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1265" />
+		<meta property="og:image:height" content="817" />
+		<meta property="og:image:alt" content="misery world" />
+		<meta property='og:video' content='https://www.youtube.com/v/1r9V_JEEMlA' />
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Kavivanar" rel="stylesheet">
+         <link rel="icon" href="./assets/images/fire.ico" />
+		<style>
+			@font-face {
+  font-family: "cross2";
+  src: url("https://cdn.glitch.global/b931fc39-bf9e-4b91-b112-6c53cf1316e1/CrossChancery-RegularSpike.ttf?v=1643720749920")
+    format("opentype");
+}
+
+
+			/* canvas{ 
+				background-color: rgb(255, 255, 255);
+			} */
+			body {
+				font-family: Monospace;
+				background-color: rgb(255, 255, 255);
+				color: #fff;
+				margin: 0px;
+                max-width: 100%;
+                width: 100vw;
+    overflow-x: hidden;
+                cursor:url(https://babesonwaves.club/wp-content/uploads/2021/07/bow-cursor-20px.png) -10 -10, auto!important;
+			}
+
+			.scan{ position:absolute;
+			text-align:center;
+			top: 50%;
+
+left: 50%;
+
+transform: translate(-50%, -50%);
+
+margin: 0;
+		z-index: 1000;
+		font-family: "cross2";
+		font-size: 6vw;
+		    color: black;
+			text-align: center;
+   padding-top: 10px;
+ /* font-size: 36px; */
+  /* font-family: "agrandir"; */
+  font-weight: "Tight";
+  word-spacing: 30px;
+  /* -webkit-text-stroke: 0.8px #ffff00; */
+  -webkit-text-fill-color: #99a8c6;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 10s;
+}
+
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+		-webkit-filter: blur(0);
+	}
+	25%{
+		opacity: .2;
+		-webkit-filter: blur(2px);
+	}
+	50%{
+		opacity: .5;
+		-webkit-filter: blur(5px);
+	}
+	75%{
+		opacity: .7;
+		-webkit-filter: blur(7px);
+	}
+	100% {
+		opacity: 1;
+		-webkit-filter: blur(10px);
+	}
+}
+			#message{
+				position:absolute;
+				left: 50%;
+				top: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				font-family: 'Kavivanar', san-serif;
+				font-size: 40px;
+				width:80%;
+				max-width:280px;
+				padding: 15px 15px 50px 15px;
+				text-align: center;
+				display:none;
+				align-content: center;
+				justify-content: center;
+				background-color: aliceblue;
+				border: medium solid #3D455C;
+				border-radius: 20px;
+				color: #3D455C;
+				z-index: 99;
+			}
+			#message_ok{
+				position: absolute;
+				bottom: 10px;
+				padding: 10px 20px 10px 20px;
+				font-family: sans-serif;
+				font-size: 20px;
+				background-color: #3D455C;
+				color: #fff;
+				border-radius: 8px;
+				border: medium solid #696882;
+			}
+			#chat{
+				position: absolute;
+				width: 100%;
+				height: 70px;
+				/* bottom: -40px; */
+				transition: all 0.5s;
+			}
+			form { background: rgba(255, 255, 255, 0); padding: 10px; width: 100%; }
+			form input { border-radius: 50px; height: 30px;  border: 1px; border-style: solid; color: rgb(101, 101, 101); background: rgba(130, 224, 255, 0); width: 88%; margin-right: .5%; }
+			form button {  border-radius: 50px; height: 40px;  border: 1px; border-style: solid; color: rgb(101, 101, 101); width: 8%; background: rgba(130, 224, 255, 0); font-family: Arial, Helvetica, sans-serif; font-size:large; }
+			form button:hover { background: rgba(101, 101, 101); }
+
+			
+			.cloud1 {
+    position: absolute;
+    width: 42vw;
+    left: -5vw;
+    bottom: -40vh;
+    opacity: 0.8;
+    z-index: 3;
+    pointer-events: none;
+    animation: cloud 5s infinite;
+	/* mix-blend-mode: multiply; */
+}
+
+.cloud2 {
+    position: absolute;
+    width: 35vw;
+    width: 45vw;
+    right: -12vw;
+    bottom: -50vh;
+    z-index: 3;
+    opacity: 0.7;
+    pointer-events: none;
+    animation: cloud 5s infinite;
+	/* mix-blend-mode: multiply; */
+}
+
+.cloud3 {
+    position: absolute;
+	width: 45vw;
+    left: 40vw;
+    bottom: -30vh;
+    opacity: 0.7;
+    z-index: 3;
+    /* transform: rotate(-95deg); */
+    /* opacity: .3; */
+    pointer-events: none;
+    /* animation: cloud 5s infinite; */
+	mix-blend-mode: multiply;
+    -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+
+
+.canvas{
+	top: 0vh;
+    position: absolute;
+}
+
+
+
+			@keyframes cloud {
+				0% {
+    transform: translate(0, 2%);
+}
+
+50% {
+    transform: translate(0, -8%);
+}
+100% {
+    transform: translate(0, 2%);
+}
+			}
+
+
+		/* .scan{ position: absolute; 
+		font-size: 12rem;
+		top: 25vw;
+    left: 25vw;} */
+	#containerassets {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+                width: 100vw;
+    overflow-x: hidden;
+  /* background: green; */
+}
+#containerassets div {
+  position: absolute;
+  /* width: 200px;
+  height: 200px; */
+  z-index: 1000;
+		    color: black;
+			text-align: center;
+   padding: 50px;
+ font-size: 24px;
+  font-family: "agrandir";
+  font-weight: "Tight";
+  /* word-spacing: 30px; */
+  -webkit-text-stroke: 0.2px #ffff00;
+  -webkit-text-fill-color: #99a8c6;
+  /* background: red; */
+}
+
+#containerassets div a:hover {
+    text-shadow:1px 1px 10px #ffff00, 1px 1px 10px #ffff00;
+}
+.top {
+  top: 0;
+}
+.right {
+  right: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+.middle{
+    top: 45vh;
+}
+
+
+.middleright{
+    top: 30vh;
+    right: 0vw;
+}
+
+.topmiddle{
+    position: absolute;
+    top: 17vh;
+    left: 0vw;
+    /* z-index: 100; */
+}
+
+.bottommiddle{
+    position: absolute;
+    bottom: 100px;
+    right: 7vw;
+    top: 65vh;
+    z-index: 1000;
+}
+
+
+.playa:hover:after {
+    /* content: url(./assets/images/play.gif); */
+    display: block;
+    position: absolute;
+    left: 123px; /* change this value to one that suits you */
+    top: 56px; /* change this value to one that suits you */
+}
+
+
+.playa{
+    position: absolute;
+    left: 10vw;
+}
+
+
+/* pop area */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 2000;
+  color: rgb(0, 0, 0);
+  /* position: absolute;
+    top: 50vh;
+    left: 75vh; */
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  z-index: 3000;
+}
+
+/* Popup arrow */
+/* .popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  z-index: 2000;
+} */
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  z-index: 2000;
+}
+
+.tv{
+    position: absolute;
+    top: 0vh;
+    left: -3vw;
+  width: 100%;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.tvstat{
+    position: absolute;
+    top: 0vh;
+    left: -1.8vw;
+  width: 80%;
+  z-index: 1100;
+  height: 150%;
+  pointer-events: none;
+  display:unset;
+}
+
+.youtube{
+    position: absolute;
+    top: 0vh;
+    left: -2.8vw;
+  width: 90%;
+  z-index: 1000;
+  /* height: 80%; */
+}
+
+.littletv:hover{
+    /* width: 130%;
+    top: -3vh;
+    left: -8vw; */
+    /* transform: translate(50%, 50%); */
+transition-duration: 10s;
+}
+
+
+.littletv{
+    width: 100%;
+    top: -10vh;
+    left: -5vw;
+    transition-duration: 10s;
+}
+
+a{
+    text-decoration: none;
+    -webkit-text-stroke: 0.8px #ffff00;
+  -webkit-text-fill-color: #99a8c6;
+}
+
+
+a:visited{
+    color: rgba(173, 173, 173, 0.424);
+    -webkit-text-stroke: 0.8px #ffff0000;
+    -webkit-text-fill-color: #99a8c600;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.randomgame{
+    width: 190%;
+    /* bottom:20%; */
+    right: 10%;
+    position: absolute;
+}
+
+
+.randomgame:hover{
+    width: 220%;
+    /* bottom:20%; */
+    right: 10%;
+    position: absolute;
+    -webkit-animation: glitter 5s infinite;
+          animation: glitter 5s infinite;
+}
+
+@-webkit-keyframes glitter {
+  0% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+}
+
+25% {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+}
+50% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+}
+70% {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+}
+100% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+}
+}
+
+@keyframes glitter {
+  0% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+}
+
+25% {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+}
+50% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+}
+70% {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+}
+100% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+}
+}
+
+
+#img-hover { 
+
+background-image: url('./assets/images/myst-0.png');
+
+ height: 10vw;
+
+ width: 10vw;
+
+ background-size:contain; }
+
+#img-hover:hover {
+
+ background-image: url('./assets/images/myst.gif');
+animation: spin 1s infinite;
+}
+
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+#txt{
+    color: black !important;
+    -webkit-text-stroke: 0mm;
+    z-index: 2000;
+    position: relative;
+    top: 0vh;
+    left: 14vh;
+}
+
+textarea{
+    /* position:relative; */
+    top: 50vh;
+    left: 10vh;  
+}
+
+#link{
+    color: black !important;
+    -webkit-text-stroke:0mm;
+}
+
+
+a#link{
+    color: black !important;
+    font-size:large;
+    -webkit-text-stroke: 0mm;
+    position: relative;
+    left: 7vh;
+}
+
+
+.but{
+    z-index: 1000;
+    padding: 50px;
+    position: absolute;
+    top: 50vh;
+    left: 10vh;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+  font-family: "agrandir";
+  font-weight: "Tight";
+}
+
+
+input{
+    text-decoration: none;
+    /* -webkit-text-stroke: 0.8px #ffff00; */
+  -webkit-text-fill-color: #99a8c6;
+  z-index: 1000;
+  position: absolute;
+    top: 50vh;
+    left: 0vh;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+  font-family: "agrandir";
+  font-weight: "Tight";
+  /* word-spacing: 30px; */
+
+}
+
+.type{
+    width: 90%;
+    position: absolute;
+    top: 10vh;
+    left: 0vh;
+    /* height: 100%; */
+}
+
+
+.pods{
+    width: 120%;
+    position: absolute;
+    top: -5vh;
+    /* left: 0vh;  */
+}
+
+
+.pods:hover{
+    width: 150%;
+    /* bottom:20%; */
+    -webkit-animation: glitter 5s infinite;
+          animation: glitter 5s infinite;
+}
+
+.book{
+    width: 120%;
+    position: absolute;
+    top: -15vh;
+    left: 4vh;
+}
+
+
+.book:hover{
+    width: 150%;
+    /* bottom:20%; */
+    -webkit-animation: glitter 5s infinite;
+          animation: glitter 5s infinite;
+}
+
+.tvtext{
+    /* position: relative; */
+    /* top: 50vh; */
+}
+
+#player-container #play-pause {
+  cursor: pointer;
+  text-indent: -999999px;
+  height:70vh;
+  width: 70vh;
+  padding: 12px 18px;
+  z-index: 2;
+  position: absolute;
+    top: -25vh;
+    left: -25vh;
+    /* background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+); */
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:10vh;
+  /* background-color: gainsboro; */
+}
+.play {
+  background-image: url(./assets/images/playstill.png);
+
+}
+.pause {
+   background-image: url(./assets/images/play.gif)!important;
+}
+
+
+
+.cd{
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+  width: 100%;
+  z-index: 1100;
+  /* height: 150%; */
+  pointer-events: none;
+  display:unset;
+}
+		</style>
+	</head>
+
+	<body>
+
+		
+		<!-- <div id="message">
+			<p id="message_text"></p>
+			<button id="message_ok">OK</button>
+		</div>
+		<div id="chat">
+			<form id="msg-form" action="">
+      			<input id="m" autocomplete="off" /><button>Send</button>
+    		</form>
+		</div> -->
+<!-- <canvas class="canvas"></canvas> -->
+
+		<!-- <div class="scan">
+		<p > WELCOME TO MISERY WORLD</p>
+		<p > HOW ARE YOU FEELING?</p>
+	</div> -->
+
+  
+
+
+
+    
+	<div id="containerassets">
+<!-- music -->
+		<div class="top left"><a target="_blank" href="https://open.spotify.com/playlist/7AK3J4RHWuhqZAcMhMXZxV?si=3c4d94be52aa4374" class="playa">playlist ↗ </a></div>
+        <!-- <div class="popup" onclick="myFunction()">misery tv</div>
+            <span class="popuptext" id="myPopup">
+                  <img class="tv" src="./assets/images/tv.png"></span>
+                  <iframe class="youtube" width="15%" src="https://www.youtube.com/embed/1AEYGMxoreQ?list=PLO68w35Xuu_k6rQRFu7N4O84CaYGrU_Ub" title="Building underground hut with grass roof & fireplace with clay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div> -->
+
+          <audio id="track">
+            <source src="./assets/images/earth/earthsong.mp4" type="audio/mpeg" />
+            <source src="./assets/images/earth/earthsong2.mp4" type="audio/mpeg" />
+          </audio>
+          
+          <div id="player-container">
+            <div id="play-pause" class="play">
+                <!-- <img  class="cd" src="./assets/images/play.gif"/> -->
+            </div>
+          </div>
+
+<!-- tv -->
+          <div class="bottom right" ><a target="_blank" class="tvtext" href="https://youtube.com/playlist?list=PLO68w35Xuu_mNTEAGKXEYBdXmTifqphT0" >misery tv ↗</a>
+            <div class="littletv">
+          <img class="tv" src="./assets/images/tv.png"/>
+          <img id="box" class="tvstat" src="./assets/images/tvstat.gif"/>
+          <!-- <iframe class="youtube" width="5%" src="https://www.youtube.com/embed/1AEYGMxoreQ?list=PLO68w35Xuu_k6rQRFu7N4O84CaYGrU_Ub&amp;autoplay=1&mute=1" title="Building underground hut with grass roof & fireplace with clay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <iframe class="youtube" width="5%" src="https://www.youtube.com/embed/zxfFYV4Lfek?list=PLO68w35Xuu_mWBPdeSkyLMrPL35zL8H_2&amp;autoplay=1&mute=1" title="Fatoumata Diawara: Tiny Desk (Home) Concert" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+<!-- game -->
+		<div class="top right"><a target="_blank" href="https://simplydailypuzzles.com"><img class="randomgame" src="./assets/images/gamepad.webp"></a></div>
+
+
+<!-- sod -->
+        <div class="middleright"><a target="_blank" href="https://www.youtube.com/playlist?list=PLO68w35Xuu_kqV-NmxN2pmXiqeqY5rDb4">somatic ↗</a></div>
+        
+<!-- writing -->
+        <div class="middle left">
+            <!-- <div class="writing"> -->
+            <a target="_blank" href="https://disorient.co/writing-prompts/">writing prompt ↗ </a>       
+        <!-- </div> -->
+        <div id="welcomeDiv"  style="display:none;" class="answer_list" ><textarea id="txt"></textarea>
+            <a href="" id="link" download="code.txt">download text</a></div>
+        </div>
+        <div class="but">
+<input><img type="button" name="answer" onclick="showDiv()" class="type" src="./assets/images/type.png"></input>
+</div>
+
+
+<!-- podcast -->
+		<div class="bottom left"><a target="_blank" href="https://gal-dem.com/growing-up-with-gal-dem-podcast/#s2e2"><img class="pods" src="./assets/images/podpodcats.png"></a></div>
+
+<!-- book -->
+        <!-- <img class="type" src="./assets/images/book.png"></a> -->
+        <div  class="bottommiddle"><a target="_blank" href="https://www.thetrevorproject.org/wp-content/uploads/2019/10/Coming-Out-Handbook.pdf"><img class="book" src="./assets/images/book.png"></a></div>
+		
+<!-- jack -->
+        <div class="topmiddle"><a target="_blank" href="https://www.youtube.com/watch?v=VPWi2wJELh4"> <img id="img-hover"  src="./assets/images/myst-0.png"></a></div>
+
+
+		<img class="cloud1" src="./assets/images/flame.png">
+		<img class="cloud2" src="./assets/images/flame.png">
+		<img class="cloud3" src="./assets/images/flame.png">
+
+		<!-- <img class="cloud1" src="./assets/images/flame.png">
+		<img class="cloud2" src="./assets/images/flame.png">
+		<img class="cloud3" src="./assets/images/flame.png"> -->
+
+    </div>
+
+
+
+
+
+
+        <script>
+setTimeout(() => {
+  const box = document.getElementById('box');
+
+  // 👇️ removes element from DOM
+  box.style.display = 'none';
+
+  // 👇️ hides element (still takes up space on page)
+  // box.style.visibility = 'hidden';
+}, 4000); // 👈️ time in milliseconds
+
+
+
+      function showDiv() {
+   document.getElementById('welcomeDiv').style.display = "block";
+}
+
+            window.onload = function() 
+	  {
+	  var txt = document.getElementById('txt');
+      document.getElementById('link').onclick = function(code) 
+		{
+      this.href = 'data:text/plain;charset=utf-11,' + encodeURIComponent(txt.value);
+        };
+      };
+
+
+
+      var track = document.getElementById('track');
+
+var controlBtn = document.getElementById('play-pause');
+
+function playPause() {
+    if (track.paused) {
+        track.play();
+        //controlBtn.textContent = "Pause";
+        controlBtn.className = "pause";
+    } else { 
+        track.pause();
+         //controlBtn.textContent = "Play";
+        controlBtn.className = "play";
+    }
+}
+
+controlBtn.addEventListener("click", playPause);
+track.addEventListener("ended", function() {
+  controlBtn.className = "play";
+});
+
+
+
+ 
+    main();
+            </script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/92/three.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		
+		<script src= "libs/inflate.min.js"></script>
+		<script src="libs/FBXLoader.js"></script>
+		<script src="libs/Detector.js"></script>
+		<script src="libs/toon3d.js"></script>
+		<!-- <script src="game.js"></script> -->
+        <script src="fire.js"></script>
+		<script>
+			var game;
+			document.addEventListener("DOMContentLoaded", function(){ game = new Game(); });
+		</script>
+	</body>
+</html>
+
+
