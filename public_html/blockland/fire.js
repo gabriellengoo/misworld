@@ -99,7 +99,7 @@ class Game{
 		this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 10, 200000 );
 		
 		this.scene = new THREE.Scene();
-		this.scene.background = new THREE.Color( 0xff6700 );
+		this.scene.background = new THREE.Color( 0xea4d00 );
 
 		const ambient = new THREE.AmbientLight( 0xaaaaaa );
         this.scene.add( ambient );
@@ -125,15 +125,15 @@ class Game{
 
 
 		// ground
-		var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 40000, 40000 ), new THREE.MeshPhongMaterial( { color: 0xff6700, depthWrite: false } ) );
+		var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 40000, 40000 ), new THREE.MeshPhongMaterial( { color: 0xea4d00, depthWrite: false } ) );
 		mesh.rotation.x = - Math.PI / 2;
 		mesh.receiveShadow = true;
 		this.scene.add( mesh );
 
-		// var grid = new THREE.GridHelper( 40000, 400, 0x000000, 0xffffff );
-		// grid.material.opacity = 0.8;
-		// grid.material.transparent = true;
-		// this.scene.add( grid );
+		var grid = new THREE.GridHelper( 40000, 400, 0x000000, 0xea4d00 );
+		grid.material.opacity = 0.8;
+		grid.material.transparent = true;
+		this.scene.add( grid );
 
 
 
@@ -458,7 +458,7 @@ class Player{
 		colour = colours[Math.floor(Math.random()*colours.length)];
 		// 'brianna',
 		if (options===undefined){
-			const people = [ 'Punk',];
+			const people = [ 'firee',];
 			model = people[Math.floor(Math.random()*people.length)];
 		}else if (typeof options =='object'){
 			this.local = false;
